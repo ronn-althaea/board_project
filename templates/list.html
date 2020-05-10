@@ -1,0 +1,23 @@
+{%  extends 'base.html' %}
+
+{% block customcss %}
+{% endblock customcss %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">Local SNS</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+  <a href="{% url 'create'%}" class="btn btn-primary" role="button" aria-pressed="true">Create</a>
+  {% for item in object_list %}
+  <div class="alert alert-success" role="alert">
+      <p>Title: <a href={% url 'detail' item.pk %}>{{ item.title }}</a></p>
+      <p>Author: {{ item.author }}</p>
+      <a href="{% url 'good' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">Good:{{item.good}}</a>
+      <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">On seen:{{item.read}}</a>
+  </div>
+  {% endfor %}
+  <a href="{% url 'logout' %}">Logout</a>
+</div>
+{% endblock content %}
